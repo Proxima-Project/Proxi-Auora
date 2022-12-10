@@ -185,7 +185,7 @@
 	if (!istext(admin_ckey) || !istext(new_rank))
 		return
 
-	var/DBQuery/select_query = dbcon.NewQuery("SELECT ckey FROM `ss13_admins` WHERE ckey = :ckey:")
+	var/DBQuery/select_query = dbcon.NewQuery("SELECT ckey FROM `ss13_admins` WHERE ckey = `:ckey:`")
 	select_query.Execute(list("ckey" = admin_ckey))
 
 	var/new_admin = TRUE
@@ -198,12 +198,12 @@
 		to_chat(usr, SPAN_NOTICE("New admin added to the DB."))
 
 	else if (new_rank != "Removed")
-		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE `ss13_admins` SET rank = :rank: WHERE ckey = :ckey:")
+		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE `ss13_admins` SET rank = :rank: WHERE ckey = `:ckey:`")
 		insert_query.Execute(list("ckey" = admin_ckey, "rank" = new_rank))
 		to_chat(usr, SPAN_NOTICE("Admin's rank changed."))
 
 	else if (new_rank == "Removed")
-		var/DBQuery/insert_query = dbcon.NewQuery("DELETE FROM ss13_admins WHERE ckey = :ckey:")
+		var/DBQuery/insert_query = dbcon.NewQuery("DELETE FROM ss13_admins WHERE ckey = `:ckey:`")
 		insert_query.Execute(list("ckey" = admin_ckey))
 		to_chat(usr, SPAN_NOTICE("Admin removed."))
 
@@ -230,7 +230,7 @@
 	if(!istext(admin_ckey) || !isnum(new_permission))
 		return
 
-	var/DBQuery/select_query = dbcon.NewQuery("SELECT flags FROM ss13_admins WHERE ckey = :ckey:")
+	var/DBQuery/select_query = dbcon.NewQuery("SELECT flags FROM ss13_admins WHERE ckey = `:ckey:`")
 	select_query.Execute(list("ckey" = admin_ckey))
 
 	var/admin_rights = 0
@@ -240,10 +240,10 @@
 		return
 
 	if(admin_rights & new_permission) //This admin already has this permission, so we are removing it.
-		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE `ss13_admins` SET flags = :flags: WHERE ckey = :ckey:")
+		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE `ss13_admins` SET flags = :flags: WHERE ckey = `:ckey:`")
 		insert_query.Execute(list("flags" = admin_rights & ~new_permission, "ckey" = admin_ckey))
 		to_chat(usr, SPAN_NOTICE("Permission removed."))
 	else //This admin doesn't have this permission, so we are adding it.
-		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE `ss13_admins` SET flags = :flags: WHERE ckey = :ckey:")
+		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE `ss13_admins` SET flags = :flags: WHERE ckey = `:ckey:`")
 		insert_query.Execute(list("flags" = admin_rights | new_permission, "ckey" = admin_ckey))
 		to_chat(usr, SPAN_NOTICE("Permission added."))
