@@ -193,7 +193,7 @@
 		new_admin = FALSE
 
 	if (new_admin)
-		var/DBQuery/update_query = dbcon.NewQuery("INSERT INTO `ss13_admins` VALUES (:ckey:, :rank:, 0)")
+		var/DBQuery/update_query = dbcon.NewQuery("INSERT INTO `ss13_admins` (ckey, `rank`, flags) VALUES (:ckey:, :rank:, 0)")
 		update_query.Execute(list("ckey" = admin_ckey, "rank" = new_rank))
 		to_chat(usr, SPAN_NOTICE("New admin added to the DB."))
 
