@@ -27,7 +27,6 @@ var/global/list/the_station_areas = list()
 
 var/global/list/implants = list()
 
-var/global/list/turfs = list()						//list of all turfs
 var/global/list/station_turfs = list()
 var/global/list/areas_by_type = list()
 var/global/list/all_areas = list()
@@ -70,7 +69,7 @@ var/global/list/exclude_jobs = list(/datum/job/ai, /datum/job/cyborg, /datum/job
 var/global/list/pdalist = list("Nothing", "Standard PDA", "Classic PDA", "Rugged PDA", "Slate PDA", "Smart PDA", "Tablet", "Wristbound")
 
 //Headset choice
-var/global/list/headsetlist = list("Nothing", "Headset", "Bowman Headset", "Double Headset", "Wristbound Radio")
+var/global/list/headsetlist = list("Nothing", "Headset", "Bowman Headset", "Double Headset", "Wristbound Radio", "Sleek Wristbound Radio")
 
 // Primary Radio Slot choice
 var/global/list/primary_radio_slot_choice = list("Left Ear", "Right Ear", "Wrist")

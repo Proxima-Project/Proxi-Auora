@@ -73,7 +73,7 @@
 			"<span class='danger'>\The [src] scrapes and gnashes against your exoskeleton before spitting you out!</span>",
 			"<b>You hear several metallic scrapes!</b>"
 			)
-		R.apply_damage(60,BRUTE)
+		R.apply_damage(60,DAMAGE_BRUTE)
 	else
 		L.visible_message(
 			"<span class='danger'>\The [src] eviscerates [L] with its teeth, swallowing what little remains whole!</span>",
@@ -184,7 +184,7 @@
 				if(prob(50))
 					var/mob/living/L = sarlacc.captive
 					if(L)
-						L.apply_damage(rand(3,10),BRUTE)
+						L.apply_damage(rand(3,10),DAMAGE_BRUTE)
 						L.visible_message(
 							"<span class='danger'>\The [src] tears at [L]'s flesh with its gruesome jaws.</span>",
 							"<span class='danger'>You feel a searing pain as \the [src] tears at your flesh!</span>",
@@ -293,7 +293,7 @@
 	var/list/possible_targets = list()
 	for(var/mob/living/L in src.loc)
 		if(L != src)
-			L.apply_damage(15,BRUTE)
+			L.apply_damage(15,DAMAGE_BRUTE)
 			possible_targets += L
 			to_chat(L, "<span class='danger'>\The [src] wraps around you tightly with its spiny teeth+!</span>")
 	if(Adjacent(originator) && possible_targets.len)
@@ -398,7 +398,7 @@
 		if(L.reagents)
 			var/madhouse = pick(/singleton/reagent/psilocybin,/singleton/reagent/mindbreaker,/singleton/reagent/impedrezene,/singleton/reagent/cryptobiolin,/singleton/reagent/soporific,/singleton/reagent/mutagen)
 			var/madhouse_verbal_component = pick(thoughts)
-			L.reagents.add_reagent("[madhouse]", 3)
+			L.reagents.add_reagent(madhouse, 3)
 			to_chat(L, "<span class='alium'><b><i>[madhouse_verbal_component]</i></b></span>")
 
 /obj/structure/greatworm
